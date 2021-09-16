@@ -1,0 +1,178 @@
+img {
+  max-width: 100%;
+}
+
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  *zoom: 1;
+}
+
+.wrap2 {
+  width: 75%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 5% 0;
+  margin-bottom: 5em;
+}
+
+.projTitle {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+  padding: 1em 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.tableHead {
+  display: table;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75em;
+}
+.tableHead li {
+  display: table-cell;
+  padding: 1em 0;
+  text-align: center;
+}
+.tableHead li.prodHeader {
+  text-align: left;
+}
+
+.cart {
+  padding: 1em 0;
+}
+.cartWrap {
+  margin: 0;
+  padding: 0;
+}
+.book {
+  cursor: pointer;
+  padding: 8px 10px;
+  font-weight: 500;
+  color: rgb(251, 251, 251);
+  border-radius: 30px;
+  background-color: rgb(30, 128, 0);
+  transition: 0.3s ease-in-out;
+  float: right;
+  margin: 5%;
+
+  &:hover {
+    background-color: rgb(43, 185, 0);
+  }
+}
+
+.iconRow {
+  width: 10%;
+}
+.dolby {
+  img {
+    filter: invert(1);
+    padding-left: 40%;
+  }
+}
+
+.cart .items {
+  display: block;
+  width: 100%;
+  vertical-align: middle;
+  background-color: rgb(51, 51, 51);
+  margin: 10px;
+  min-height: 130px;
+  //   border-bottom: 1px solid #fafafa;
+}
+.cart .items.even {
+  background: #fafafa;
+}
+.cart .items .infoWrap {
+  width: 100%;
+}
+.cart .items .cartSection {
+  vertical-align: middle;
+}
+.cart .items .cartSection .itemNumber {
+  font-size: 1.5em;
+  color: rgb(255, 255, 255);
+  margin-bottom: 0;
+  padding-left: 4%;
+  text-transform: uppercase;
+}
+.cart .items .cartSection h3 {
+  font-size: 1em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+.cart .items .cartSection p {
+  display: inline-block;
+  font-size: 0.85em;
+  color: #777777;
+  font-family: "Montserrat", sans-serif;
+}
+.cart .items .cartSection p .quantity {
+  font-weight: bold;
+  color: #333;
+}
+.cart .items .cartSection p.stockStatus {
+  color: #82ca9c;
+  font-weight: bold;
+  padding: 0.5em 0 0 1em;
+  text-transform: uppercase;
+}
+.cart .items .cartSection p.stockStatus.out {
+  color: #f69679;
+}
+.cart .items .cartSection .itemImg {
+  width: 4em;
+  float: left;
+}
+.cart .items .cartSection.qtyWrap,
+.cart .items .cartSection.prodTotal {
+  text-align: center;
+}
+.cart .items .cartSection.qtyWrap p,
+.cart .items .cartSection.prodTotal p {
+  font-weight: bold;
+  font-size: 1.25em;
+}
+.cart .items .cartSection input.qty {
+  width: 2em;
+  text-align: center;
+  font-size: 1em;
+  padding: 0.25em;
+  margin: 1em 0.5em 0 0;
+}
+.cart .items .cartSection .itemImg {
+  width: 8em;
+  display: inline;
+  padding-right: 1em;
+}
+
+.cartSection {
+  h3 {
+    color: white;
+  }
+}
+@media only screen and (max-width: 39.375em) {
+  .wrap {
+    width: 98%;
+    padding: 2% 0;
+  }
+
+  .projTitle {
+    font-size: 1.5em;
+    padding: 10% 5%;
+  }
+}

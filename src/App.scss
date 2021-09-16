@@ -1,0 +1,26 @@
+* {
+  font-family: "Roboto", sans-serif;
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff00;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #00e70c;
+    border-radius: 20px;
+  }
+}
+
+:root {
+  --main-color: #0b0b0b;
+}
