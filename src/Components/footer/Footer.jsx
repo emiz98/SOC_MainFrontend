@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <div>
       <footer>
-        <div className="wrapper">
-          <img className="footerImg" src="/sm.png" alt="" />
+        <div className="footerWrapper">
+          <img className="footerImg" src="/logo.png" alt="" />
           <small>
             &copy;2021 <strong>Movie Booking System</strong>, All Rights
             Reserved

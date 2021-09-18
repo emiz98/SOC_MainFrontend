@@ -1,0 +1,29 @@
+.movieOngoingInfo {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  color: white;
+  margin: 5%;
+}
+
+.movieOngoing {
+  width: 95% !important;
+  img {
+    width: 100%;
+  }
+}
+
+.movieInfo_fadebottom {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: -2px;
+  height: 16vh;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(0, 0, 0, 0.8),
+    rgb(10, 10, 10)
+  );
+}

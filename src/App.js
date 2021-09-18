@@ -8,6 +8,7 @@ import ListHalls from "./Pages/ListHalls/ListHalls";
 import Footer from "./Components/footer/Footer";
 import Account from "./Pages/AccountDetails/Account";
 import Seats from "./Pages/Seats/Seats";
+import Events from "./Pages/Events/Events";
 
 function App() {
   return (
@@ -16,14 +17,15 @@ function App() {
         {/* <Bhome /> */}
         <Navbar />
         <Switch>
-          <Route path="/" exact>
-            <Bhome />
-          </Route>
+          <Route path="/" exact></Route>
           <Route path="/single/:id/">
             <BookingSingle />
           </Route>
           <Route path="/cinemas">
-            <ListHalls />
+            <Bhome />
+          </Route>
+          <Route path="/events">
+            <Events />
           </Route>
           <Route path="/seats">
             <Seats />
