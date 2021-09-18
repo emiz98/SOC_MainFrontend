@@ -9,6 +9,7 @@ import Footer from "./Components/footer/Footer";
 import Account from "./Pages/AccountDetails/Account";
 import Seats from "./Pages/Seats/Seats";
 import Events from "./Pages/Events/Events";
+import HallDetail from "./Pages/ListHalls/HallDetail";
 
 function App() {
   return (
@@ -23,6 +24,12 @@ function App() {
           </Route>
           <Route path="/cinemas">
             <Bhome />
+          </Route>
+          <Route path="/halldetails">
+            <HallDetail />
+          </Route>
+          <Route path="/theaters">
+            <ListHalls />
           </Route>
           <Route path="/events">
             <Events />

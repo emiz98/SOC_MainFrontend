@@ -10,12 +10,15 @@ const OngoingMovies = ({ title, fetchUrl }) => {
   const [movies, setMovies] = useState([]);
   const base_url = "https://image.tmdb.org/t/p/original/";
   const settings = {
-    dots: true,
-    infinite: false,
+    dots: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1024,
@@ -55,15 +58,15 @@ const OngoingMovies = ({ title, fetchUrl }) => {
 
   return (
     <div>
-      <div className="title">{title}</div>
+      <div className="heading">{title}</div>
       <Slider {...settings}>
         {movies.map((movie) => (
           <div className="movie movieOngoing" key={movie?.id}>
             <img src={`${base_url}${movie.backdrop_path}`} alt="" />
             <div className="movieOngoingInfo">
-              <h4>{movie?.original_title}</h4>
+              <div className="MovieTitle">{movie?.original_title}</div>
               <Link to={`/single/${movie?.id}}`}>
-                <span className="info">Book Now</span>
+                <span className="info">Buy Tickets</span>
               </Link>
             </div>
             <div className="movieInfo_fadebottom"></div>
