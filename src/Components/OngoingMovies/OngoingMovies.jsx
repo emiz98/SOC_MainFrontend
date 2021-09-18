@@ -72,27 +72,6 @@ const OngoingMovies = ({ title, fetchUrl }) => {
             <div className="movieInfo_fadebottom"></div>
           </div>
         ))}
-        {/* <div>
-          <img src="/banner1.jpg" alt="" />
-        </div>
-        <div>
-          <img src="/banner1.jpg" alt="" />
-        </div>{" "}
-        <div>
-          <img src="/banner1.jpg" alt="" />
-        </div>{" "}
-        <div>
-          <img src="/banner1.jpg" alt="" />
-        </div>{" "}
-        <div>
-          <img src="/banner1.jpg" alt="" />
-        </div>{" "}
-        <div>
-          <img src="/banner1.jpg" alt="" />
-        </div>{" "}
-        <div>
-          <img src="/banner1.jpg" alt="" />
-        </div> */}
       </Slider>
     </div>
   );

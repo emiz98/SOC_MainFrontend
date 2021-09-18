@@ -14,7 +14,6 @@ const Events = () => {
 
   return (
     <div className="BannerSlider">
-      <h2> Single Item</h2>
       <Slider {...settings}>
         <img src="/banner1.jpg" alt="" />
         <img src="/banner1.jpg" alt="" />

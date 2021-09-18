@@ -13,6 +13,7 @@ const BookingSingle = () => {
 
   useEffect(() => {
     //if [], run once when the row loads, and don't run again
+    window.scrollTo(0, 0);
     async function fetchData() {
       const request = await axios.get(
         `https://api.themoviedb.org/3/movie/${parseInt(

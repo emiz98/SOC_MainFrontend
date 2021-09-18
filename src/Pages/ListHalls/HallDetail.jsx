@@ -1,6 +1,11 @@
 import "./listhalls.scss";
+import { useEffect } from "react";
 
 const HallDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <div className="container hallTitle">
@@ -82,7 +87,7 @@ const HallDetail = () => {
             </p>
           </div>
           <div className="col-md-4 col-lg-4 col-xl-3 col-xxl-3">
-            <img src="ico1.png" />
+            <img src="ico3.png" />
             <p className="facilityHeading">
               <br />
               <strong>Restaurant</strong>

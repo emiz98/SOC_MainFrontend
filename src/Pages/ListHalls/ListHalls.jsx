@@ -1,7 +1,12 @@
 import "./listhalls.scss";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const ListHalls = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <section style={{ margin: "37px" }}>
