@@ -7,7 +7,7 @@ import requests from "../../requests";
 
 const Mbanner = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,

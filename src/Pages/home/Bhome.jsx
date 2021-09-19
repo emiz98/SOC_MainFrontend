@@ -17,13 +17,15 @@ const Bhome = () => {
       <Link to="/theaters" className="linking">
         <div className="buttonLike">Theaters</div>
       </Link>
-      <div className="buttonLike">Food Court</div>
+      <Link to="/food" className="linking">
+        <div className="buttonLike">Food Court</div>
+      </Link>
       <div className="spacer"></div>
+      <OngoingMovies title="NOW ON THEATERS" fetchUrl={requests.fetchFantasy} />
       <OngoingMovies
-        title="NOW ON THEATERS"
-        fetchUrl={requests.fetchFantasy}
+        title="UPCOMING MOVIES"
+        fetchUrl={requests.fetchNowPlaying}
       />
-      <OngoingMovies title="UPCOMING MOVIES" fetchUrl={requests.fetchNowPlaying} />
     </div>
   );
 };

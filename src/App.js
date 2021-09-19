@@ -10,6 +10,7 @@ import Account from "./Pages/AccountDetails/Account";
 import Seats from "./Pages/Seats/Seats";
 import Events from "./Pages/Events/Events";
 import HallDetail from "./Pages/ListHalls/HallDetail";
+import FoodCourt from "./Pages/FoodCourt/FoodCourt";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/theaters">
             <ListHalls />
+          </Route>
+          <Route path="/food">
+            <FoodCourt />
           </Route>
           <Route path="/events">
             <Events />
