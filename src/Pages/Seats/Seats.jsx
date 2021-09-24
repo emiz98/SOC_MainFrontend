@@ -1,115 +1,154 @@
-import { useState } from "react";
+/**
+ * inspiration repo: https://github.com/bradtraversy/vanillawebprojects
+ * movie seat booking: https://github.com/bradtraversy/vanillawebprojects/tree/master/movie-seat-booking
+ * but in react 🤓
+ */
+
 import "./seats.scss";
+import React, { useState } from "react";
+import clsx from "clsx";
 
-const Seats = () => {
-  const [Selected, setSelected] = useState(false);
+const movies = [
+  {
+    name: "Avenger",
+    price: 10,
+    occupied: [20, 21, 30, 1, 2, 8],
+  },
+  {
+    name: "Joker",
+    price: 12,
+    occupied: [9, 41, 35, 11, 65, 26],
+  },
+  {
+    name: "Toy story",
+    price: 8,
+    occupied: [37, 25, 44, 13, 2, 3],
+  },
+  {
+    name: "the lion king",
+    price: 9,
+    occupied: [10, 12, 50, 33, 28, 47],
+  },
+];
 
-  const toggleClass = () => {
-    setSelected(!Selected);
-  };
+const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
+
+export default function App() {
+  const [selectedMovie, setSelectedMovie] = useState(movies[0]);
+  const [selectedSeats, setSelectedSeats] = useState([]);
+
+  console.log(selectedSeats);
 
   return (
-    <div>
-      <div class="movie-container">
-        <label>Pick a movie: </label>
-        <select id="movie">
-          <option value="1">7.00 AM - 9.00 AM</option>
-          <option value="2">9.30 AM - 11.30 AM</option>
-          <option value="3">1.00 PM - 3.00 PM</option>
-          <option value="4">4.30 PM - 6.30 PM</option>
-          <option value="5">7.00 PM - 9.00 PM</option>
-        </select>
+    <div className="App">
+      <Movies
+        movie={selectedMovie}
+        onChange={(movie) => {
+          setSelectedSeats([]);
+          setSelectedMovie(movie);
+        }}
+      />
+      <ShowCase />
+      <Cinema
+        movie={selectedMovie}
+        selectedSeats={selectedSeats}
+        onSelectedSeatsChange={(selectedSeats) =>
+          setSelectedSeats(selectedSeats)
+        }
+      />
 
-        <ul class="showcase">
-          <li>
-            <div class="seat"></div>
-            <small>N/A</small>
-          </li>
-          <li>
-            <div class="seat selected"></div>
-            <small>Selected</small>
-          </li>
-          <li>
-            <div class="seat occupied"></div>
-            <small>Occupied</small>
-          </li>
-        </ul>
+      <p className="info">
+        You have selected <span className="count">{selectedSeats.length}</span>{" "}
+        seats for the price of{" "}
+        <span className="total">
+          {selectedSeats.length * selectedMovie.price}$
+        </span>
+      </p>
+    </div>
+  );
+}
 
-        <div class="container2">
-          <div class="screen"></div>
+function Movies({ movie, onChange }) {
+  return (
+    <div className="Movies">
+      <label htmlFor="movie">Pick a movie</label>
+      <select
+        id="movie"
+        value={movie.name}
+        onChange={(e) => {
+          onChange(movies.find((movie) => movie.name === e.target.value));
+        }}
+      >
+        {movies.map((movie) => (
+          <option key={movie.name} value={movie.name}>
+            {movie.name} (${movie.price})
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
 
-          <div class="row">
-            <div
-              onClick={toggleClass}
-              className={`seat ${Selected && "selected"}`}
-            ></div>
-            <div class="seat"></div>
-            <div class="seat selected"></div>
-            <div class="seat selected"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-          </div>
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat occupied"></div>
-            <div class="seat occupied"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-          </div>
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat occupied"></div>
-            <div class="seat occupied"></div>
-          </div>
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-          </div>
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat occupied"></div>
-            <div class="seat occupied"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-          </div>
-          <div class="row">
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat"></div>
-            <div class="seat occupied"></div>
-            <div class="seat occupied"></div>
-            <div class="seat occupied"></div>
-            <div class="seat"></div>
-          </div>
+function ShowCase() {
+  return (
+    <ul className="ShowCase">
+      <li>
+        <span className="seat" /> <small>N/A</small>
+      </li>
+      <li>
+        <span className="seat selected" /> <small>Selected</small>
+      </li>
+      <li>
+        <span className="seat occupied" /> <small>Occupied</small>
+      </li>
+    </ul>
+  );
+}
 
-          <p class="text">
-            You have selected <span id="count">0</span> seats for the total
-            price of Rs. <span id="total">0</span>
-          </p>
-        </div>
+function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
+  function handleSelectedState(seat) {
+    const isSelected = selectedSeats.includes(seat);
+    if (isSelected) {
+      onSelectedSeatsChange(
+        selectedSeats.filter((selectedSeat) => selectedSeat !== seat)
+      );
+    } else {
+      onSelectedSeatsChange([...selectedSeats, seat]);
+      console.log(selectedSeats);
+    }
+  }
+
+  return (
+    <div className="Cinema">
+      <div className="screen" />
+
+      <div className="seats">
+        {seats.map((seat) => {
+          const isSelected = selectedSeats.includes(seat);
+          const isOccupied = movie.occupied.includes(seat);
+          return (
+            <span
+              tabIndex="0"
+              key={seat}
+              className={clsx(
+                "seat",
+                isSelected && "selected",
+                isOccupied && "occupied"
+              )}
+              onClick={isOccupied ? null : () => handleSelectedState(seat)}
+              onKeyPress={
+                isOccupied
+                  ? null
+                  : (e) => {
+                      if (e.key === "Enter") {
+                        handleSelectedState(seat);
+                      }
+                    }
+              }
+            />
+          );
+        })}
       </div>
     </div>
   );
-};
-
-export default Seats;
+}

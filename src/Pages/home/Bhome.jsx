@@ -5,6 +5,7 @@ import MovieList from "../../Components/MovieList/MovieList";
 import OngoingMovies from "../../Components/OngoingMovies/OngoingMovies";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import OngoingMovies2 from "../../Components/OngoingMovies/OngoingMovies2";
 
 const Bhome = () => {
   useEffect(() => {
@@ -21,6 +22,7 @@ const Bhome = () => {
         <div className="buttonLike">Food Court</div>
       </Link>
       <div className="spacer"></div>
+      <OngoingMovies2 title="NOW ON THEATERS" />
       <OngoingMovies title="NOW ON THEATERS" fetchUrl={requests.fetchFantasy} />
       <OngoingMovies
         title="UPCOMING MOVIES"
