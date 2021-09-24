@@ -45,31 +45,29 @@ const BookingSingle = () => {
   console.log(movie);
   console.log(movieLink);
 
-  // function handleClick() {
-  //   document.getElementsByClassName("coverImg")[0].style.visibility = "hidden";
-  //   document.getElementsByClassName("youtube-video")[0].style.visibility =
-  //     "visible";
-  // }
-
   return (
     <div>
       <div className="movie-card">
         <div className="containerCard">
           <a href="#">
-            <img
-              src={`${img_300}${movie?.poster_path}`}
-              alt="cover"
-              className="cover"
-            />
+            <div className="posterContainer">
+              <img
+                src={`${img_300}${movie?.poster_path}`}
+                alt="cover"
+                className="cover"
+              />
+              {/* <button className="trailerPlayBooking">
+                Play Trailer
+              </button> */}
+            </div>
           </a>
 
           <div className="hero">
-            if (movie?.video==false)
-            {/* <img
+            <img
               className="coverImg"
               src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
               alt=""
-            /> */}
+            />
             <div className="movieTrailer">
               <iframe
                 className="youtube-video"
