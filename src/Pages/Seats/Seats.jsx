@@ -5,8 +5,10 @@
  */
 
 import "./seats.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
+import { useParams } from "react-router";
+import axios from "axios";
 
 const movies = [
   {
@@ -34,10 +36,25 @@ const movies = [
 const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
 
 export default function App() {
+  const { id } = useParams();
+  const [showTimes, setShowTimes] = useState([]);
+
   const [selectedMovie, setSelectedMovie] = useState(movies[0]);
   const [selectedSeats, setSelectedSeats] = useState([]);
 
+  useEffect(() => {
+    async function fetchShowTimes() {
+      const req = await axios.get(
+        `http://localhost:8080/api/v1/showTimes/${parseInt(id)}`
+      );
+      setShowTimes(req.data);
+      return req;
+    }
+    fetchShowTimes();
+  }, []);
+
   console.log(selectedSeats);
+  console.log(showTimes);
 
   return (
     <div className="App">

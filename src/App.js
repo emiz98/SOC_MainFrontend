@@ -4,6 +4,7 @@ import Bhome from "./Pages/home/Bhome";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Components/navbar/Navbar";
 import BookingSingle from "./Components/booking-single/BookingSingle";
+import BookingSingle2 from "./Components/booking-single/BookingSingle2";
 import ListHalls from "./Pages/ListHalls/ListHalls";
 import Footer from "./Components/footer/Footer";
 import Account from "./Pages/AccountDetails/Account";
@@ -11,6 +12,7 @@ import Seats from "./Pages/Seats/Seats";
 import Events from "./Pages/Events/Events";
 import HallDetail from "./Pages/ListHalls/HallDetail";
 import FoodCourt from "./Pages/FoodCourt/FoodCourt";
+import SeatTest from "./Pages/Seats/SeatTest";
 
 function App() {
   return (
@@ -20,12 +22,19 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact></Route>
-          <Route path="/single/:id/">
-            <BookingSingle />
-          </Route>
           <Route path="/cinemas">
             <Bhome />
           </Route>
+          <Route path="/single/:id/">
+            <BookingSingle />
+          </Route>
+          <Route path="/movie/:id/">
+            <BookingSingle2 />
+          </Route>
+          <Route path="/seats/:id/">
+            <SeatTest />
+          </Route>
+
           <Route path="/halldetails">
             <HallDetail />
           </Route>
@@ -37,9 +46,6 @@ function App() {
           </Route>
           <Route path="/events">
             <Events />
-          </Route>
-          <Route path="/seats">
-            <Seats />
           </Route>
           <Route path="/account">
             <Account />

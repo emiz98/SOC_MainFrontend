@@ -67,7 +67,7 @@ const OngoingMovies2 = ({ title }) => {
             <img src={`${base_url}${movie.poster_path}`} alt="" />
             <div className="movieOngoingInfo">
               <div className="MovieTitle">{movie?.title}</div>
-              <Link to={`/single/${movie?.tmdbId}}`}>
+              <Link to={`/movie/${movie?.id}}`}>
                 <span className="info">Buy Tickets</span>
               </Link>
             </div>

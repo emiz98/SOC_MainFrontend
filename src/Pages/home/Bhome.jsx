@@ -23,7 +23,10 @@ const Bhome = () => {
       </Link>
       <div className="spacer"></div>
       <OngoingMovies2 title="NOW ON THEATERS" />
-      <OngoingMovies title="NOW ON THEATERS" fetchUrl={requests.fetchFantasy} />
+      {/* <OngoingMovies
+        title="NOW ON THEATERS"
+        fetchUrl={requests.fetchAnimation}
+      /> */}
       <OngoingMovies
         title="UPCOMING MOVIES"
         fetchUrl={requests.fetchNowPlaying}
