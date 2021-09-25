@@ -32,7 +32,7 @@ function App() {
             <BookingSingle2 />
           </Route>
           <Route path="/seats/:id/">
-            <SeatTest />
+            <Seats />
           </Route>
 
           <Route path="/halldetails">

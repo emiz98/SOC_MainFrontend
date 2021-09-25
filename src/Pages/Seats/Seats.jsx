@@ -1,14 +1,10 @@
-/**
- * inspiration repo: https://github.com/bradtraversy/vanillawebprojects
- * movie seat booking: https://github.com/bradtraversy/vanillawebprojects/tree/master/movie-seat-booking
- * but in react 🤓
- */
-
 import "./seats.scss";
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { useParams } from "react-router";
 import axios from "axios";
+
+const base_url = "http://localhost:8080/assets/images/";
 
 const movies = [
   {
@@ -42,23 +38,72 @@ export default function App() {
   const [selectedMovie, setSelectedMovie] = useState(movies[0]);
   const [selectedSeats, setSelectedSeats] = useState([]);
 
+  const [ticket, setTicket] = useState({
+    movie: {
+      id: parseInt(id),
+    },
+    movieShowTime: {
+      dateSlot: {
+        id: "",
+      },
+      id: "",
+      movie: {
+        id: parseInt(id),
+      },
+      timeSlot: {
+        id: "",
+      },
+    },
+    email: "menadithrox1@gmail.com",
+    seats: "",
+  });
+
+  const handleSubmit = (e) => {
+    const request2 = axios.post("http://localhost:8080/api/v1/tickets", ticket);
+  };
+  const changeShowTime = (e) => {
+    ticket.movieShowTime.id = e.target.value;
+  };
+  const changeSeats = (e) => {
+    ticket.seats = e;
+  };
+
   useEffect(() => {
     async function fetchShowTimes() {
       const req = await axios.get(
         `http://localhost:8080/api/v1/showTimes/${parseInt(id)}`
       );
       setShowTimes(req.data);
+      setDbSeats(req.data[0].seats);
+      ticket.movieShowTime.id = req.data[0].id;
+      ticket.movieShowTime.dateSlot.id = req.data[0].dateSlot.id;
+      ticket.movieShowTime.timeSlot.id = req.data[0].timeSlot.id;
       return req;
     }
     fetchShowTimes();
   }, []);
 
-  console.log(selectedSeats);
+  const [dbSeats, setDbSeats] = useState({
+    id: 1,
+    seats: showTimes[0]?.seats,
+  });
+
+  useEffect(() => {
+    async function updateSeats() {
+      const request3 = axios.post(
+        "http://localhost:8080/api/v1/showTimes/",
+        dbSeats
+      );
+    }
+    updateSeats();
+  }, [selectedSeats]);
+
   console.log(showTimes);
 
   return (
     <div className="App">
       <Movies
+        showTimes={showTimes}
         movie={selectedMovie}
         onChange={(movie) => {
           setSelectedSeats([]);
@@ -68,6 +113,8 @@ export default function App() {
       <ShowCase />
       <Cinema
         movie={selectedMovie}
+        posterPath={showTimes[0]?.movie.poster_path}
+        seatsArray={showTimes[0]?.seats?.split(",")}
         selectedSeats={selectedSeats}
         onSelectedSeatsChange={(selectedSeats) =>
           setSelectedSeats(selectedSeats)
@@ -81,11 +128,33 @@ export default function App() {
           {selectedSeats.length * selectedMovie.price}$
         </span>
       </p>
+
+      <form onSubmit={handleSubmit} className="book">
+        <select
+          name="movieShowTime"
+          onChange={changeShowTime}
+          className="form-select"
+          aria-label="Default select example"
+        >
+          {showTimes.map((showTime) => (
+            <option key={showTime.id} value={showTime.id}>
+              Date: {showTime.dateSlot.date} -------- Time:
+              {showTime.timeSlot.time}
+            </option>
+          ))}
+        </select>
+        <input
+          type="hidden"
+          name="seats"
+          onChange={changeSeats(selectedSeats.length)}
+        />
+        <input className="nextBtn" type="submit" value="Book Now!!" />
+      </form>
     </div>
   );
 }
 
-function Movies({ movie, onChange }) {
+function Movies({ movie, onChange, showTimes }) {
   return (
     <div className="Movies">
       <label htmlFor="movie">Pick a movie</label>
@@ -101,6 +170,11 @@ function Movies({ movie, onChange }) {
             {movie.name} (${movie.price})
           </option>
         ))}
+        {showTimes.map((showTime) => (
+          <option key={showTime.id} value={showTime.id}>
+            {showTime.dateSlot.date} ({showTime.timeSlot.time})
+          </option>
+        ))}
       </select>
     </div>
   );
@@ -110,7 +184,7 @@ function ShowCase() {
   return (
     <ul className="ShowCase">
       <li>
-        <span className="seat" /> <small>N/A</small>
+        <span className="seat" /> <small>Available</small>
       </li>
       <li>
         <span className="seat selected" /> <small>Selected</small>
@@ -122,7 +196,13 @@ function ShowCase() {
   );
 }
 
-function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
+function Cinema({
+  movie,
+  selectedSeats,
+  onSelectedSeatsChange,
+  posterPath,
+  seatsArray,
+}) {
   function handleSelectedState(seat) {
     const isSelected = selectedSeats.includes(seat);
     if (isSelected) {
@@ -131,18 +211,26 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
       );
     } else {
       onSelectedSeatsChange([...selectedSeats, seat]);
-      console.log(selectedSeats);
     }
   }
 
+  var ss = ["9", " 41", " 35", " 11", " 65", " 26"];
+  const movie2 = seatsArray?.map(Number);
+  // console.log(movie2);
+
+  // console.log(selectedSeats.concat(movie2));
+
   return (
     <div className="Cinema">
-      <div className="screen" />
+      <div className="screen">
+        <img className="screenImg" src={`${base_url}${posterPath}`} alt="" />
+      </div>
 
       <div className="seats">
         {seats.map((seat) => {
           const isSelected = selectedSeats.includes(seat);
-          const isOccupied = movie.occupied.includes(seat);
+          // const isOccupied = movie.occupied.includes(seat);
+          const isOccupied = movie2?.includes(seat);
           return (
             <span
               tabIndex="0"

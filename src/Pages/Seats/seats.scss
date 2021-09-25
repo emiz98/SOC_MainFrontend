@@ -48,11 +48,16 @@
 }
 
 .Cinema .screen {
-  height: 70px;
+  height: 140px;
+  width: 250px !important;
   background: white;
   width: 100%;
   transform: rotateX(-30deg) scale(1.1);
   box-shadow: 0 3px 10px 2px;
+}
+
+.screenImg {
+  width: 100% !important;
 }
 
 .Cinema .seats {
@@ -125,8 +130,18 @@
   background: #cfcfcf;
 }
 
-.info {
-  margin-bottom: 200px;
+.book {
+  margin-bottom: 100px;
+}
+
+.nextBtn {
+  margin: 25px;
+  border-radius: 20px;
+  padding: 5px 15px 5px 15px;
+  background-color: #00a500;
+  border-color: #00a500;
+  color: white;
+  font-weight: bold;
 }
 
 .info .count {
