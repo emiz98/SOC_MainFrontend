@@ -13,6 +13,7 @@ import Events from "./Pages/Events/Events";
 import HallDetail from "./Pages/ListHalls/HallDetail";
 import FoodCourt from "./Pages/FoodCourt/FoodCourt";
 import SeatTest from "./Pages/Seats/SeatTest";
+import Payment from "./Pages/Payment/Payment";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/seats/:id/">
             <Seats />
+          </Route>
+          <Route path="/payment">
+            <Payment />
           </Route>
 
           <Route path="/halldetails">

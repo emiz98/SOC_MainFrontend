@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { useParams } from "react-router";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const base_url = "http://localhost:8080/assets/images/";
 
@@ -29,43 +30,24 @@ const movies = [
   },
 ];
 
+const tests = [
+  { id: 1, availableSeats: 66 },
+  { id: 2, availableSeats: 64 },
+];
+
 const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
 
 export default function App() {
   const { id } = useParams();
   const [showTimes, setShowTimes] = useState([]);
+  const [ShowTimeId, setShowTimeId] = useState();
 
   const [selectedMovie, setSelectedMovie] = useState(movies[0]);
+  const [selectedShowTime, setSelectedShowTime] = useState();
   const [selectedSeats, setSelectedSeats] = useState([]);
 
-  const [ticket, setTicket] = useState({
-    movie: {
-      id: parseInt(id),
-    },
-    movieShowTime: {
-      dateSlot: {
-        id: "",
-      },
-      id: "",
-      movie: {
-        id: parseInt(id),
-      },
-      timeSlot: {
-        id: "",
-      },
-    },
-    email: "menadithrox1@gmail.com",
-    seats: "",
-  });
-
-  const handleSubmit = (e) => {
-    const request2 = axios.post("http://localhost:8080/api/v1/tickets", ticket);
-  };
   const changeShowTime = (e) => {
-    ticket.movieShowTime.id = e.target.value;
-  };
-  const changeSeats = (e) => {
-    ticket.seats = e;
+    setShowTimeId(e.target.value);
   };
 
   useEffect(() => {
@@ -74,45 +56,44 @@ export default function App() {
         `http://localhost:8080/api/v1/showTimes/${parseInt(id)}`
       );
       setShowTimes(req.data);
-      setDbSeats(req.data[0].seats);
-      ticket.movieShowTime.id = req.data[0].id;
-      ticket.movieShowTime.dateSlot.id = req.data[0].dateSlot.id;
-      ticket.movieShowTime.timeSlot.id = req.data[0].timeSlot.id;
+      setSelectedShowTime(req.data[0]);
+      setShowTimeId(req.data[0].id);
       return req;
     }
     fetchShowTimes();
   }, []);
 
-  const [dbSeats, setDbSeats] = useState({
-    id: 1,
-    seats: showTimes[0]?.seats,
-  });
-
-  useEffect(() => {
-    async function updateSeats() {
-      const request3 = axios.post(
-        "http://localhost:8080/api/v1/showTimes/",
-        dbSeats
-      );
-    }
-    updateSeats();
-  }, [selectedSeats]);
-
-  console.log(showTimes);
+  console.log(selectedShowTime);
+  const ShowTimeChange = (e) => {
+    const obj = showTimes.find((show) => show.id == e.target.value);
+    setSelectedShowTime(obj);
+    console.log(selectedShowTime);
+  };
 
   return (
     <div className="App">
-      <Movies
+      <div className="Movies">
+        <label htmlFor="">Pick a Show Time</label>
+        <select onChange={ShowTimeChange}>
+          {showTimes.map((showTime) => (
+            <option key={showTime.id} value={showTime.id}>
+              {showTime.dateSlot.date} ({showTime.timeSlot.time})
+            </option>
+          ))}
+        </select>
+      </div>
+      {/* <Movies
         showTimes={showTimes}
         movie={selectedMovie}
         onChange={(movie) => {
           setSelectedSeats([]);
           setSelectedMovie(movie);
         }}
-      />
+      /> */}
       <ShowCase />
       <Cinema
         movie={selectedMovie}
+        showTime={selectedShowTime}
         posterPath={showTimes[0]?.movie.poster_path}
         seatsArray={showTimes[0]?.seats?.split(",")}
         selectedSeats={selectedSeats}
@@ -129,7 +110,7 @@ export default function App() {
         </span>
       </p>
 
-      <form onSubmit={handleSubmit} className="book">
+      <form className="book">
         <select
           name="movieShowTime"
           onChange={changeShowTime}
@@ -143,13 +124,24 @@ export default function App() {
             </option>
           ))}
         </select>
-        <input
-          type="hidden"
-          name="seats"
-          onChange={changeSeats(selectedSeats.length)}
-        />
-        <input className="nextBtn" type="submit" value="Book Now!!" />
       </form>
+
+      <div>
+        <Link
+          to={{
+            pathname: "/payment",
+            state: {
+              movieId: parseInt(id),
+              movieShowTimeId: parseInt(ShowTimeId),
+              seatsLength: selectedSeats.length,
+              seats: selectedSeats,
+            },
+          }}
+          className="linking"
+        >
+          <button className="nextBtn">Pay Now</button>
+        </Link>
+      </div>
     </div>
   );
 }
@@ -198,6 +190,7 @@ function ShowCase() {
 
 function Cinema({
   movie,
+  showTime,
   selectedSeats,
   onSelectedSeatsChange,
   posterPath,
@@ -214,11 +207,8 @@ function Cinema({
     }
   }
 
-  var ss = ["9", " 41", " 35", " 11", " 65", " 26"];
   const movie2 = seatsArray?.map(Number);
-  // console.log(movie2);
-
-  // console.log(selectedSeats.concat(movie2));
+  // console.log(movie);
 
   return (
     <div className="Cinema">
