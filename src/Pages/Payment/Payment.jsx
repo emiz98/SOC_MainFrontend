@@ -29,16 +29,28 @@ const Payment = () => {
     seats: location.state.seats.toString(),
   });
 
-  const handleSubmit = (e) => {
-    const request1 = axios.post("http://localhost:8080/api/v1/tickets", ticket);
-    const request2 = axios.post(
-      "http://localhost:8080/api/v1/showTimes",
-      dbSeats
-    );
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dbSeats),
   };
 
-  console.log(ticket);
-  console.log(dbSeats);
+  const handleSubmit = (e) => {
+    axios
+      .all([
+        axios.post("http://localhost:8080/api/v1/showTimes", dbSeats),
+        axios.post("http://localhost:8080/api/v1/tickets", ticket),
+      ])
+      .then(
+        axios.spread((data1, data2) => {
+          console.log(data1);
+          console.log(data2);
+        })
+      );
+  };
+  console.log(location.state.seats);
+  // console.log(ticket);
+  // console.log(dbSeats);
   return (
     <div>
       <button onClick={handleSubmit} style={{ margin: "10%" }}>

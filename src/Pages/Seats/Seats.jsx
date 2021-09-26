@@ -30,11 +30,6 @@ const movies = [
   },
 ];
 
-const tests = [
-  { id: 1, availableSeats: 66 },
-  { id: 2, availableSeats: 64 },
-];
-
 const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
 
 export default function App() {
@@ -45,10 +40,6 @@ export default function App() {
   const [selectedMovie, setSelectedMovie] = useState(movies[0]);
   const [selectedShowTime, setSelectedShowTime] = useState();
   const [selectedSeats, setSelectedSeats] = useState([]);
-
-  const changeShowTime = (e) => {
-    setShowTimeId(e.target.value);
-  };
 
   useEffect(() => {
     async function fetchShowTimes() {
@@ -63,11 +54,13 @@ export default function App() {
     fetchShowTimes();
   }, []);
 
-  console.log(selectedShowTime);
+  // console.log(selectedShowTime?.seats.split(",").map(Number));
+
   const ShowTimeChange = (e) => {
-    const obj = showTimes.find((show) => show.id == e.target.value);
+    setSelectedSeats([]);
+    const obj = showTimes.find((t) => t.id == e.target.value);
     setSelectedShowTime(obj);
-    console.log(selectedShowTime);
+    setShowTimeId(obj.id);
   };
 
   return (
@@ -93,9 +86,8 @@ export default function App() {
       <ShowCase />
       <Cinema
         movie={selectedMovie}
-        showTime={selectedShowTime}
         posterPath={showTimes[0]?.movie.poster_path}
-        seatsArray={showTimes[0]?.seats?.split(",")}
+        seatsArray={selectedShowTime?.seats?.split(",")}
         selectedSeats={selectedSeats}
         onSelectedSeatsChange={(selectedSeats) =>
           setSelectedSeats(selectedSeats)
@@ -110,22 +102,6 @@ export default function App() {
         </span>
       </p>
 
-      <form className="book">
-        <select
-          name="movieShowTime"
-          onChange={changeShowTime}
-          className="form-select"
-          aria-label="Default select example"
-        >
-          {showTimes.map((showTime) => (
-            <option key={showTime.id} value={showTime.id}>
-              Date: {showTime.dateSlot.date} -------- Time:
-              {showTime.timeSlot.time}
-            </option>
-          ))}
-        </select>
-      </form>
-
       <div>
         <Link
           to={{
@@ -134,12 +110,21 @@ export default function App() {
               movieId: parseInt(id),
               movieShowTimeId: parseInt(ShowTimeId),
               seatsLength: selectedSeats.length,
-              seats: selectedSeats,
+              seats: selectedSeats.concat(
+                selectedShowTime?.seats.split(",").map(Number)
+              ),
             },
           }}
           className="linking"
         >
-          <button className="nextBtn">Pay Now</button>
+          {selectedSeats.concat(
+            selectedShowTime?.seats.split(",").map(Number).length
+          ) != 64 ? (
+            <button className="nextBtn">Pay Now</button>
+          ) : (
+            <div style={{ marginBottom: "50px" }}></div>
+          )}
+          {/* <button className="nextBtn">Pay Now</button> */}
         </Link>
       </div>
     </div>
@@ -190,7 +175,6 @@ function ShowCase() {
 
 function Cinema({
   movie,
-  showTime,
   selectedSeats,
   onSelectedSeatsChange,
   posterPath,
@@ -208,7 +192,6 @@ function Cinema({
   }
 
   const movie2 = seatsArray?.map(Number);
-  // console.log(movie);
 
   return (
     <div className="Cinema">
