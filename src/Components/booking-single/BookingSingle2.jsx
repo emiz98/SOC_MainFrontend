@@ -10,6 +10,7 @@ const BookingSingle = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [movie2, setMovie2] = useState([]);
+  const [showTimes, setshowTimes] = useState([]);
 
   const img_base_url = "http://localhost:8080/assets/images/";
 
@@ -24,6 +25,7 @@ const BookingSingle = () => {
     }
     fetchMovieDetails();
     getMovieDetails(movie.tmdbId);
+    getShowTimes();
   }, [movie.tmdbId]);
 
   const getMovieDetails = async (id) => {
@@ -36,8 +38,18 @@ const BookingSingle = () => {
       });
   };
 
-  console.log(movie);
-  console.log(movie2);
+  const getShowTimes = async () => {
+    await axios
+      .get(`http://localhost:8080/api/v1/showTimes/${parseInt(id)}`)
+      .then((res2) => {
+        setshowTimes(res2.data);
+      });
+
+    console.log(showTimes.length);
+  };
+
+  // console.log(movie);
+  // console.log(movie2);
 
   return (
     <div>
@@ -77,9 +89,14 @@ const BookingSingle = () => {
               <div className="title2">{movie2?.tagline}</div>
               <span className="likes">{movie2?.vote_count} Votes</span>
               <div className="ticketButtonDiv">
-                <Link to={`/seats/${movie?.id}}`}>
-                  <span className="ticketButton">Book Tickets</span>
-                </Link>
+                {showTimes.length != 0 ? (
+                  <Link to={`/seats/${movie?.id}}`}>
+                    <span className="ticketButton">Book Tickets</span>
+                  </Link>
+                ) : (
+                  <span className="ticketButtonNA">Tickets Not Available</span>
+                )}
+                {/* <span className="ticketButton">Book Tickets</span> */}
               </div>
             </div>
           </div>

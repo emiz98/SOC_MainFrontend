@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ArrowDownward } from "@material-ui/icons";
 
 const base_url = "http://localhost:8080/assets/images/";
 
@@ -55,6 +56,7 @@ export default function App() {
   }, []);
 
   // console.log(selectedShowTime?.seats.split(",").map(Number));
+  console.log(showTimes);
 
   const ShowTimeChange = (e) => {
     setSelectedSeats([]);
@@ -64,18 +66,28 @@ export default function App() {
   };
 
   return (
-    <div className="App">
-      <div className="Movies">
-        <label htmlFor="">Pick a Show Time</label>
-        <select onChange={ShowTimeChange}>
-          {showTimes.map((showTime) => (
-            <option key={showTime.id} value={showTime.id}>
-              {showTime.dateSlot.date} ({showTime.timeSlot.time})
-            </option>
-          ))}
-        </select>
-      </div>
-      {/* <Movies
+    <div
+      className="App"
+      style={{
+        backgroundImage: `url("${base_url}${showTimes[0]?.movie.poster_path}")`,
+        backgroundBlendMode: "hue",
+        backgroundSize: "cover",
+      }}
+    >
+      <div className="test">
+        <div className="Movies">
+          <label htmlFor="">Pick a Show Time</label>
+          <select onChange={ShowTimeChange}>
+            {showTimes.map((showTime) => (
+              <option key={showTime.id} value={showTime.id}>
+                &#xf073;&nbsp; {showTime.dateSlot.date} &nbsp; &nbsp;
+                &nbsp;&#xf017; &nbsp;
+                {showTime.timeSlot.time}
+              </option>
+            ))}
+          </select>
+        </div>
+        {/* <Movies
         showTimes={showTimes}
         movie={selectedMovie}
         onChange={(movie) => {
@@ -83,49 +95,50 @@ export default function App() {
           setSelectedMovie(movie);
         }}
       /> */}
-      <ShowCase />
-      <Cinema
-        movie={selectedMovie}
-        posterPath={showTimes[0]?.movie.poster_path}
-        seatsArray={selectedShowTime?.seats?.split(",")}
-        selectedSeats={selectedSeats}
-        onSelectedSeatsChange={(selectedSeats) =>
-          setSelectedSeats(selectedSeats)
-        }
-      />
+        <ShowCase />
+        <Cinema
+          movie={selectedMovie}
+          posterPath={showTimes[0]?.movie.poster_path}
+          seatsArray={selectedShowTime?.seats}
+          selectedSeats={selectedSeats}
+          onSelectedSeatsChange={(selectedSeats) =>
+            setSelectedSeats(selectedSeats)
+          }
+        />
 
-      <p className="info">
-        You have selected <span className="count">{selectedSeats.length}</span>{" "}
-        seats for the price of{" "}
-        <span className="total">
-          {selectedSeats.length * selectedMovie.price}$
-        </span>
-      </p>
+        <p className="info">
+          You have selected{" "}
+          <span className="count">{selectedSeats.length}</span> seats for the
+          price of{" "}
+          <span className="total">
+            {selectedSeats.length * selectedMovie.price}$
+          </span>
+        </p>
 
-      <div>
-        <Link
-          to={{
-            pathname: "/payment",
-            state: {
-              movieId: parseInt(id),
-              movieShowTimeId: parseInt(ShowTimeId),
-              seatsLength: selectedSeats.length,
-              seats: selectedSeats.concat(
-                selectedShowTime?.seats.split(",").map(Number)
-              ),
-            },
-          }}
-          className="linking"
-        >
-          {selectedSeats.concat(
-            selectedShowTime?.seats.split(",").map(Number).length
-          ) != 64 ? (
-            <button className="nextBtn">Pay Now</button>
-          ) : (
-            <div style={{ marginBottom: "50px" }}></div>
-          )}
-          {/* <button className="nextBtn">Pay Now</button> */}
-        </Link>
+        <div style={{ marginBottom: "110px" }}>
+          <Link
+            to={{
+              pathname: "/payment",
+              state: {
+                movieId: parseInt(id),
+                movieShowTimeId: parseInt(ShowTimeId),
+                // seats: selectedSeats.concat(
+                //   selectedShowTime?.seats.split(",").map(Number)
+                seats: selectedSeats,
+              },
+            }}
+            className="linking"
+          >
+            {selectedSeats.concat(
+              selectedShowTime?.seats.split(",").map(Number).length
+            ) != 64 ? (
+              <button className="nextBtn">Pay Now</button>
+            ) : (
+              <div style={{ marginBottom: "50px" }}></div>
+            )}
+          </Link>
+        </div>
+        {/* <div className="ticket_fadebottom"></div> */}
       </div>
     </div>
   );
@@ -191,7 +204,8 @@ function Cinema({
     }
   }
 
-  const movie2 = seatsArray?.map(Number);
+  const movie2 = seatsArray?.split(",")?.map(Number);
+  // console.log(seatsArray?.length);
 
   return (
     <div className="Cinema">

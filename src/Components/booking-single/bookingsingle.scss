@@ -266,6 +266,21 @@ a:hover {
   }
 }
 
+.ticketButtonNA {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 500;
+  color: rgb(224, 224, 224);
+  border-radius: 30px;
+  position: relative;
+  text-decoration: none;
+  background-color: #5c5c5c;
+  width: 110px;
+  padding: 10px;
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
 .tag {
   background: #029400;
   color: white;

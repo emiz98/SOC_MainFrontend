@@ -45,7 +45,7 @@
       align-items: center;
 
       .icon {
-        margin: 0px 15px;
+        margin: 0px 30px;
         cursor: pointer;
       }
 
@@ -62,11 +62,13 @@
           display: none;
           background-color: var(--main-color);
           border-radius: 5px;
+          margin-top: 10px;
         }
 
         span {
           padding: 10px;
           cursor: pointer;
+          color: white;
         }
 
         &:hover {
@@ -79,4 +81,8 @@
       }
     }
   }
+}
+
+.contain {
+  max-width: 1900px !important;
 }

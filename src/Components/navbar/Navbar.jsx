@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <div className={isScrolled ? "navbar scrolled" : "navbar"}>
-      <div className="container">
+      <div className="container contain">
         <div className="left">
           <Link to="/" className="linking">
             <img

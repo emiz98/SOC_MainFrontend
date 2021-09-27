@@ -11464,6 +11464,11 @@
     "lodash.debounce" "^4.0.8"
     "resize-observer-polyfill" "^1.5.0"
 
+"react-stripe-checkout@^2.6.3":
+  "integrity" "sha1-MXOocLBOWjwyGgbSTNU8YDARHEU="
+  "resolved" "https://registry.npmjs.org/react-stripe-checkout/-/react-stripe-checkout-2.6.3.tgz"
+  "version" "2.6.3"
+
 "react-timeout@^2.0.1":
   "integrity" "sha512-u/+cTXeYO+Jd8/E5UBhioxrumLf57vqH72V4R0d/vrb6Ej9FdmxoaPZMZ9A0NY5BCQAwuhM3BtiMU0edhr5NeQ=="
   "resolved" "https://registry.npmjs.org/react-timeout/-/react-timeout-2.0.1.tgz"
