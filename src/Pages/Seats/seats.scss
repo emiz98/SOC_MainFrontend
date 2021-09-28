@@ -32,6 +32,7 @@
   }
   select {
     font-family: fontAwesome;
+    font-weight: 500;
   }
 }
 
@@ -52,10 +53,14 @@
   list-style: none;
   display: flex;
   justify-content: center;
-  background: #3b3b3b;
+  background: #313131;
   padding: 12px;
-  border-radius: 4px;
+  border-radius: 40px;
   color: #7e7e7e;
+
+  small {
+    color: rgb(143, 143, 143);
+  }
 }
 
 .ShowCase li {
@@ -89,6 +94,9 @@
   grid-gap: 6px;
   grid-template-columns: repeat(8, min-content);
   align-items: center;
+  background-color: #0000007d;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .Cinema .seats .seat:nth-of-type(8n + 2) {
@@ -102,7 +110,7 @@
 .Cinema .seats .seat:not(.occupied):hover,
 .Cinema .seats .seat:not(.occupied):focus {
   cursor: pointer;
-  background: #c1eac5;
+  background: #29c739;
   transform: scale(1.2);
 }
 
@@ -115,7 +123,7 @@
   height: 12px;
   border-radius: 100%;
   background: transparent;
-  border: 1px solid #7bc47f;
+  border: 1px solid #48bb4d;
   animation: show-off 0.8s;
   visibility: hidden;
 }
@@ -147,7 +155,7 @@
 }
 
 .seat.selected {
-  background: #7bc47f !important;
+  background: #11e41c !important;
 }
 
 .seat.occupied {

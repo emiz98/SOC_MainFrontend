@@ -9,9 +9,74 @@
   background-color: #696969;
   padding: 10px;
   border-radius: 10px;
-  cursor: pointer;
 }
 
 .spacer {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+}
+
+// Spinner parent
+#spinner {
+  width: 52px;
+  height: 52px;
+  display: block;
+  cursor: pointer;
+  float: right;
+  margin: 15px;
+}
+
+// Spinner child - svg line anim
+svg.spinner-webkit {
+  width: 40px;
+  height: 40px;
+
+  path {
+    stroke-dasharray: 329;
+    stroke-dashoffset: 0;
+    stroke: #57ad56;
+    stroke-width: 1.8px;
+    animation: draw 4s ease-in-out infinite;
+    fill: transparent;
+    fill-opacity: 0;
+  }
+
+  @keyframes draw {
+    100% {
+      stroke-dasharray: 329;
+      stroke-dashoffset: 658;
+    }
+  }
+}
+
+//Spinner child - non-svg anim IE fallback
+.spinner-ie {
+  width: 32px;
+  height: 32px;
+  display: none;
+  animation: spin 0.5s linear infinite;
+  border: 2px solid transparent;
+  border-top: 2px solid #57ad56;
+  border-left: 2px solid #57ad56;
+  border-radius: 50px;
+  cursor: pointer;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// Hide SVG anim and display regular spinner for IE10+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .spinner-webkit {
+    display: none;
+  }
+
+  .spinner-ie {
+    display: block;
+  }
 }
