@@ -15,7 +15,7 @@ jobs:
 
       - name: 🔨 Build Project
         run: |
-          nom install --no-optional
+          npm install --no-optional
           npm run build
         env:
           CI: false
