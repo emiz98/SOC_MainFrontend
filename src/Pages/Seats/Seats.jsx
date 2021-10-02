@@ -4,8 +4,7 @@ import clsx from "clsx";
 import { useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
-const base_url = "http://localhost:8080/assets/images/";
+import requests from "../../requests";
 
 const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
 
@@ -21,7 +20,7 @@ export default function App() {
     window.scrollTo(0, 0);
     async function fetchShowTimes() {
       const req = await axios.get(
-        `http://localhost:8080/api/v1/showTimes/${parseInt(id)}`
+        `${requests.fetchCinemaMovieShowTime}${parseInt(id)}`
       );
       setShowTimes(req.data);
       setSelectedShowTime(req.data[0]);
@@ -44,7 +43,7 @@ export default function App() {
     <div
       className="App"
       style={{
-        backgroundImage: `url("${base_url}${showTimes[0]?.movie.poster_path}")`,
+        backgroundImage: `url("${requests.fetchAssetPath}/images/${showTimes[0]?.movie.poster_path}")`,
         backgroundBlendMode: "hue",
         backgroundSize: "cover",
       }}
@@ -72,10 +71,11 @@ export default function App() {
           }
         />
 
-        <p className="info">
+        <p className="info2">
           You have selected{" "}
-          <span className="count">{selectedSeats.length}</span> seats for the
-          price of <span className="total">{selectedSeats.length * 10}$</span>
+          <span className="count">{selectedSeats.length}</span>
+          <br /> seats for the price of
+          <span className="total"> {selectedSeats.length * 800} LKR</span>
         </p>
 
         <div style={{ marginBottom: "110px" }}>
@@ -148,7 +148,11 @@ function Cinema({
   return (
     <div className="Cinema">
       <div className="screen">
-        <img className="screenImg" src={`${base_url}${posterPath}`} alt="" />
+        <img
+          className="screenImg"
+          src={`${requests.fetchAssetPath}/images/${posterPath}`}
+          alt=""
+        />
       </div>
 
       <div className="seats">

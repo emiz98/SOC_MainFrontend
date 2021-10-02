@@ -9,11 +9,9 @@ import axios from "axios";
 const Mbanner = () => {
   const [banners, setBanners] = useState([]);
 
-  const base_url = "http://localhost:8080/assets/banners/";
-
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get("http://localhost:8080/api/v1/banners");
+      const request = await axios.get(requests.fetchCinemaBanners);
       setBanners(request.data);
       return request;
     }
@@ -39,7 +37,7 @@ const Mbanner = () => {
           {banners.map((banner) => (
             <img
               key={banner.id}
-              src={`${base_url}${banner.banner_image}`}
+              src={`${requests.fetchAssetPath}banners/${banner.banner_image}`}
               alt=""
             />
           ))}

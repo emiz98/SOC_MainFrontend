@@ -6,12 +6,12 @@ import Stripe from "react-stripe-checkout";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const base_url = "http://localhost:8080/assets/images/";
+import requests from "../../requests";
 
 const Payment = () => {
   const history = useHistory();
   const location = useLocation();
+  const ticketPrice = 800;
   const [ticket, setTicket] = useState({
     movie: {
       id: location.state.movieId,
@@ -35,7 +35,7 @@ const Payment = () => {
   toast.configure();
 
   const handleSubmit = (e) => {
-    axios.post("http://localhost:8080/api/v1/tickets", ticket);
+    axios.post(`${requests.dispatchTicket}`, ticket);
   };
 
   const date = location.state.movie.showTime.dateSlot.date.split("-");
@@ -45,18 +45,20 @@ const Payment = () => {
   async function handleToken(token) {
     console.log(token);
     await axios
-      .post("http://localhost:8080/api/payment/charge", "", {
+      .post(`${requests.dispatchPayment}`, "", {
         headers: {
           token: token.id,
-          amount: location.state.seats.length * 10,
+          amount: location.state.seats.length * ticketPrice,
         },
       })
-      .then(() => {
+      .then((res) => {
         history.push("/");
       })
       .catch((error) => {
-        history.push("/");
+        alert(error);
       });
+
+    handleSubmit();
   }
 
   useEffect(() => {
@@ -71,37 +73,98 @@ const Payment = () => {
 
   return (
     <div>
-      <button onClick={handleSubmit} style={{ margin: "10%" }}>
-        pay
-      </button>
-      <Stripe
-        stripeKey="pk_test_51JeObyEXdQP0Ck3CjOwRRRDyk8Z65U1AaiinArcsyYajARHGIhfYPiWpnXsF1FGBG1IaLduF9NncVzw0hs0ZWIIU004ibEuBdv"
-        amount={location.state.seats.length * 10 * 100}
-        token={handleToken}
-      />
-
-      <div
-        class="ticket ticket-2"
-        style={{
-          backgroundImage: `url("${base_url}${location.state.movie.poster}")`,
-          backgroundSize: "cover",
-        }}
-      >
-        <div class="date">
-          <span class="day">{date[2]}</span>
-          <span class="month-and-time">
-            {date[1]} <br />
-            <span class="small">{date[0]}</span>
-          </span>
+      <div className="st_dtts_wrapper float_left">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 spacer">
+              <div className="st_dtts_left_main_wrapper float_left">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div
+                      className="ticket ticket-2"
+                      style={{
+                        backgroundImage: `url("${requests.fetchAssetPath}/images/${location.state.movie.poster}")`,
+                        backgroundSize: "cover",
+                      }}
+                    >
+                      <div className="date">
+                        <span className="day">{date[2]}</span>
+                        <span className="month-and-time">
+                          {date[1]} <br />
+                          <span className="small">{date[0]}</span>
+                        </span>
+                      </div>
+                      <div className="artist">
+                        <span className="name">
+                          {location.state.movie.name}
+                        </span>
+                      </div>
+                      <div className="bookedTickets">
+                        Booked Tickets <br />{" "}
+                        <span>
+                          Seat Numbers : {location.state.seats.toString()}
+                        </span>
+                      </div>
+                      <div className="payment_fadebottom"></div>
+                    </div>
+                  </div>
+                  <div className="col-md-12">
+                    <div className="st_cherity_section float_left">
+                      <div className="st_cherity_img float_left">
+                        <img
+                          src="banner1.jpg"
+                          alt="img"
+                          style={{ width: "100%" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="st_dtts_bs_wrapper float_left">
+                    <div className="st_dtts_bs_heading float_left">
+                      <p>Booking summary</p>
+                    </div>
+                    <div className="st_dtts_sb_ul float_left">
+                      <ul>
+                        <li>
+                          Platinum -{location.state.seats.toString()}
+                          <br />
+                          {location.state.seats.length} Ticket(s)
+                          <span>
+                            Rs .{ticketPrice} X {location.state.seats.length}
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="st_dtts_sb_h2 float_left">
+                      <h5>
+                        Sub total{" "}
+                        <span>
+                          Rs. {location.state.seats.length * ticketPrice}
+                        </span>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-12">
+                <div className="st_cherity_btn float_left">
+                  <Stripe
+                    stripeKey="pk_test_51JeObyEXdQP0Ck3CjOwRRRDyk8Z65U1AaiinArcsyYajARHGIhfYPiWpnXsF1FGBG1IaLduF9NncVzw0hs0ZWIIU004ibEuBdv"
+                    amount={location.state.seats.length * 800 * 100}
+                    currency="LKR"
+                    token={handleToken}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="artist">
-          <span class="name">{location.state.movie.name}</span>
-        </div>
-        <div className="bookedTickets">
-          Booked Tickets <br />{" "}
-          <span>Seat Numbers : {location.state.seats.toString()}</span>
-        </div>
-        <div className="payment_fadebottom"></div>
       </div>
     </div>
   );

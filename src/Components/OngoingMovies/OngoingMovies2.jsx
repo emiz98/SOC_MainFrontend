@@ -5,10 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import requests from "../../requests";
 
 const OngoingMovies2 = ({ title }) => {
   const [movies, setMovies] = useState([]);
-  const base_url = "http://localhost:8080/assets/images/";
   const settings = {
     dots: false,
     infinite: true,
@@ -49,7 +49,7 @@ const OngoingMovies2 = ({ title }) => {
 
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get("http://localhost:8080/api/v1/movies");
+      const request = await axios.get(requests.fetchCinemaOngoingMovies);
       setMovies(request.data);
       return request;
     }
@@ -64,7 +64,10 @@ const OngoingMovies2 = ({ title }) => {
       <Slider {...settings}>
         {movies.map((movie) => (
           <div className="movie movieOngoing" key={movie?.id}>
-            <img src={`${base_url}${movie.poster_path}`} alt="" />
+            <img
+              src={`${requests.fetchAssetPath}/images/${movie.poster_path}`}
+              alt=""
+            />
             <div className="movieOngoingInfo">
               <div className="MovieTitle">{movie?.title}</div>
               <Link to={`/movie/${movie?.id}}`}>

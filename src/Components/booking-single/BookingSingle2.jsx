@@ -5,6 +5,7 @@ import "./bookingsingle.scss";
 import { img_300 } from "../../config";
 import { Link } from "react-router-dom";
 import $ from "jquery";
+import requests from "../../requests";
 
 const BookingSingle = () => {
   const { id } = useParams();
@@ -12,14 +13,12 @@ const BookingSingle = () => {
   const [movie2, setMovie2] = useState([]);
   const [showTimes, setshowTimes] = useState([]);
 
-  const img_base_url = "http://localhost:8080/assets/images/";
-
   useEffect(() => {
     //if [], run once when the row loads, and don't run again
     window.scrollTo(0, 0);
     async function fetchMovieDetails() {
       const req = await axios.get(
-        `http://localhost:8080/api/v1/movie/${parseInt(id)}`
+        `${requests.fetchCinemaMovie}${parseInt(id)}`
       );
       setMovie(req.data);
     }
@@ -40,7 +39,7 @@ const BookingSingle = () => {
 
   const getShowTimes = async () => {
     await axios
-      .get(`http://localhost:8080/api/v1/showTimes/${parseInt(id)}`)
+      .get(`${requests.fetchCinemaMovieShowTime}${parseInt(id)}`)
       .then((res2) => {
         setshowTimes(res2.data);
       });
@@ -71,7 +70,7 @@ const BookingSingle = () => {
           <div className="hero">
             <img
               className="coverImg"
-              src={`${img_base_url}${movie?.poster_path}`}
+              src={`${requests.fetchAssetPath}/images/${movie?.poster_path}`}
               alt=""
             />
             <div className="movieTrailer">

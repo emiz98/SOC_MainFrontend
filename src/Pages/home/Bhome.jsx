@@ -32,7 +32,7 @@ const Bhome = () => {
         </Link>
       </div>
 
-      <div className="spacer"></div>
+      <div className="spacer2"></div>
       <OngoingMovies2 title="NOW ON THEATERS" />
       {/* <OngoingMovies
         title="NOW ON THEATERS"

@@ -176,18 +176,18 @@
   font-weight: bold;
 }
 
-.info {
+.info2 {
   margin-bottom: 10px;
-  width: 380px;
+  width: 300px;
   margin: auto;
-}
-
-.info .count {
-  color: #000000;
-  font-weight: bolder;
-}
-
-.info .total {
-  color: #000000;
-  font-weight: bolder;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: normal;
+  background-color: rgb(44, 44, 44);
+  color: #a0a0a0;
+  span {
+    margin-left: 10px;
+    color: #ffffff;
+    font-weight: bolder !important;
+  }
 }

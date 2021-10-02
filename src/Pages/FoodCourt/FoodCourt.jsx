@@ -1,17 +1,16 @@
 import "./foodCourt.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import requests from "../../requests";
 
 const FoodCourt = () => {
   const [foods, setFoods] = useState([]);
-
-  const base_url = "http://localhost:8080/assets/foods/";
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     async function fetchData() {
-      const request = await axios.get("http://localhost:8080/api/v1/foods");
+      const request = await axios.get(`${requests.fetchCinemaFoods}`);
       setFoods(request.data);
       return request;
     }
@@ -38,7 +37,9 @@ const FoodCourt = () => {
         <div className="row" style={{ marginBottom: "30px" }}>
           {foods.map((food) => (
             <div className="col-md-3 foodItem">
-              <img src={`${base_url}${food.food_image}`} />
+              <img
+                src={`${requests.fetchAssetPath}/foods/${food.food_image}`}
+              />
               <h4>{food.title}</h4>
               <p>
                 {food.description}
