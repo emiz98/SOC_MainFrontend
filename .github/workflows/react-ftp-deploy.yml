@@ -15,6 +15,7 @@ jobs:
       
     - name: 🔨 Build Project
       run: |
+        npm cache clean --force
         npm install --no-optional
         npm run build
     
