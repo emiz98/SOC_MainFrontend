@@ -3,7 +3,7 @@ name: 🚀 React FTP Deploy
 jobs:
   web-deploy:
     name: 🎉 Deploy
-    runs-on: darwin-latest
+    runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
