@@ -14,17 +14,19 @@ jobs:
         node-version: '12'
       
     - name: 🔨 Build Project
+      env:
+       CI: false
       run: |
-        yarn install --no-optional
+        nom install --no-optional
         npm run build
     
-    # - name: List output files
-    #   run: find build/ -print
+    - name: List output files
+      run: find build/ -print
       
-    # - name: 📂 Sync files
-    #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
-    #   with:
-    #     server: ${{ secrets.FTP_SERVER }}
-    #     username: ${{ secrets.FTP_USERNAME }}
-    #     password: ${{ secrets.FTP_PASSWORD }}
-    #     local-dir: build/
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: build/
