@@ -14,11 +14,24 @@ html {
 .BannerSlider {
   width: 100%;
   margin: auto;
-  // padding-top: 90px;
+  overflow: hidden;
+  img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px !important;
+  }
 
   iframe {
     height: 575px;
   }
+}
+
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: auto;
 }
 
 .slick-prev,
