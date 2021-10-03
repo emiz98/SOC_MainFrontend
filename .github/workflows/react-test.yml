@@ -1,12 +1,7 @@
-name: ⚛React CI Test
-
-on:
-  push:
-    branches: [ main ]
-
+on: push
+name: ⚛ React CI Test
 jobs:
   build_test:
-  
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,14 +11,14 @@ jobs:
     steps:
       - name: 🔍 Searching for Repo
         uses: actions/checkout@v2
-        
+
       - name: ♻️ Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          
+
       - name: 👤 npm ci, 🔨build and 🧪️test
         run: |
           npm ci
           npm run build --if-present
-          npm test 
+          npm test
