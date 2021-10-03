@@ -1,7 +1,6 @@
 import "./bhome.scss";
 import Mbanner from "../../Components/movie-banner/Mbanner";
 import requests from "../../requests";
-import MovieList from "../../Components/MovieList/MovieList";
 import OngoingMovies from "../../Components/OngoingMovies/OngoingMovies";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -16,9 +15,6 @@ const Bhome = () => {
     <div className="bookingHome">
       <Mbanner />
 
-      <Link to="/theaters" className="linking">
-        <div className="buttonLike">Theaters</div>
-      </Link>
       <div id="spinner">
         <Link to="/food" className="linking">
           <svg
@@ -34,10 +30,6 @@ const Bhome = () => {
 
       <div className="spacer2"></div>
       <OngoingMovies2 title="NOW ON THEATERS" />
-      {/* <OngoingMovies
-        title="NOW ON THEATERS"
-        fetchUrl={requests.fetchAnimation}
-      /> */}
       <OngoingMovies
         title="UPCOMING MOVIES"
         fetchUrl={requests.fetchNowPlaying}

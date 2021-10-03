@@ -21,22 +21,18 @@ const Navbar = () => {
         <div className="left">
           <Link to="/" className="linking">
             <img
-              // src="//upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/170px-Netflix_2015_logo.svg.png"
-              src="/logo.png"
+              src="//upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/170px-Netflix_2015_logo.svg.png"
               alt=""
             />
           </Link>
-          {/* <Link to="/" className="linking">
-            <span className="linking">Home</span>
-          </Link>
-          <Link to="/events" className="linking">
-            <span className="linking">Events</span>
-          </Link> */}
-          <Link to="/home" className="linking">
+          <Link to="/" className="linking">
             <span className="linking">Home</span>
           </Link>
           <Link to="/cinemas" className="linking">
             <span className="linking">Cinemas</span>
+          </Link>
+          <Link to="/blogs" className="linking">
+            <span className="linking">Blogs</span>
           </Link>
         </div>
 

@@ -82,11 +82,6 @@ const BookingSingle = () => {
               <div className="title1">{movie.original_title}</div>
               <div className="title2">{movie?.tagline}</div>
               <span className="likes">{movie?.vote_count} Votes</span>
-              <div className="ticketButtonDiv">
-                <Link to="/cinemas">
-                  <span className="ticketButton">Book Tickets</span>
-                </Link>
-              </div>
             </div>
           </div>
 
