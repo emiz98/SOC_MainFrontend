@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 export const img_300 = "https://image.tmdb.org/t/p/w300";
 export const img_500 = "https://image.tmdb.org/t/p/w500";
 
@@ -12,3 +14,10 @@ export const unavailableLandscape =
 // For Carousel
 export const noPicture =
   "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg";
+
+export const scrollOn = () => {
+  $("html, body").removeAttr("style");
+};
+export const scrollLock = () => {
+  $("html, body").css({ overflow: "hidden", height: "100%" });
+};

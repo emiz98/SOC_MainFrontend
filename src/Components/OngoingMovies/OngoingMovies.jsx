@@ -3,10 +3,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { useEffect, useState } from "react";
+import { scrollOn, scrollLock } from "../../config";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 const OngoingMovies = ({ title, fetchUrl }) => {
+  const [Loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const base_url = "https://image.tmdb.org/t/p/original/";
   const settings = {
@@ -48,9 +50,14 @@ const OngoingMovies = ({ title, fetchUrl }) => {
   };
 
   useEffect(() => {
+    // scrollLock();
     async function fetchData() {
-      const request = await axios.get(fetchUrl);
-      setMovies(request.data.results);
+      const request = await axios.get(fetchUrl).then((res) => {
+        setLoading(true);
+        setMovies(res.data.results);
+        // scrollOn();
+      });
+
       return request;
     }
     fetchData();

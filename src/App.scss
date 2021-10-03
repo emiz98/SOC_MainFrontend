@@ -24,3 +24,20 @@
 :root {
   --main-color: #0b0b0b;
 }
+html,
+body {
+}
+.text-success {
+  position: absolute;
+  z-index: 999;
+  left: 48%;
+  bottom: 50%;
+}
+.spinner-border {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+.spinnerBack {
+  background-color: black;
+  height: 100vh;
+}
