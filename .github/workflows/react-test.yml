@@ -19,6 +19,6 @@ jobs:
 
       - name: 👤 npm ci, 🔨build and 🧪️test
         run: |
-          npm ci
+          npm ci --no-optional
           npm run build --if-present
           npm test
