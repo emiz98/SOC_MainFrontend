@@ -8,9 +8,9 @@ const HallDetail = () => {
 
   return (
     <div>
-      <div className="container hallTitle">
+      <div className="hallTitle">
         <div className="col">
-          <img src="theatres_banner.jpg" />
+          <img className="hallBanner" src="theatres_banner.jpg" />
         </div>
         <div className="hallTitleAbsolute">
           <div className="hallTitleMain">Savoy 3D Dolby ATMOS</div>
