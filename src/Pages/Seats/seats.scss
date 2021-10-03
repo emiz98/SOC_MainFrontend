@@ -168,13 +168,19 @@
 }
 
 .nextBtn {
-  margin: 25px;
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 30px;
   border-radius: 20px;
   padding: 5px 15px 5px 15px;
-  background-color: #00a500;
-  border-color: #00a500;
+  background-color: #008d00;
   color: white;
   font-weight: bold;
+
+  &:hover{
+    background-color: #00bd00;
+    color: rgb(255, 255, 255);
+  }
 }
 
 .info2 {

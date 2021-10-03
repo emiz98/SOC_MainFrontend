@@ -70,7 +70,10 @@ const OngoingMovies2 = ({ title }) => {
             />
             <div className="movieOngoingInfo">
               <div className="MovieTitle">{movie?.title}</div>
-              <Link to={`/movie/${movie?.id}}`}>
+              <Link
+                to={`/movie/${movie?.id}}`}
+                style={{ textDecoration: "none" }}
+              >
                 <span className="info">Buy Tickets</span>
               </Link>
             </div>

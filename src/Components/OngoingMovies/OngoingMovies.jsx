@@ -65,8 +65,11 @@ const OngoingMovies = ({ title, fetchUrl }) => {
             <img src={`${base_url}${movie.backdrop_path}`} alt="" />
             <div className="movieOngoingInfo">
               <div className="MovieTitle">{movie?.original_title}</div>
-              <Link to={`/single/${movie?.id}}`}>
-                <span className="info">Buy Tickets</span>
+              <Link
+                to={`/single/${movie?.id}}`}
+                style={{ textDecoration: "none" }}
+              >
+                <span className="info">Review</span>
               </Link>
             </div>
             <div className="movieInfo_fadebottom"></div>

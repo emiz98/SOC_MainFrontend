@@ -37,25 +37,41 @@ const Navbar = () => {
         <Navbars.Toggle aria-controls="responsive-navbar-nav" />
         <Navbars.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link to="/" className="linking">
+            <Link to="/" className="linking" style={{ textDecoration: "none" }}>
               <span className="linking">Home</span>
             </Link>
 
-            <Link to="/cinemas" className="linking">
+            <Link
+              to="/cinemas"
+              className="linking"
+              style={{ textDecoration: "none" }}
+            >
               <span className="linking">Cinemas</span>
             </Link>
 
-            <Link to="/blogs" className="linking">
+            <Link
+              to="/blogs"
+              className="linking"
+              style={{ textDecoration: "none" }}
+            >
               <span className="linking">Blogs</span>
             </Link>
           </Nav>
           <Nav>
             <NavDropdown title="Account" id="collasible-nav-dropdown">
-              <Link to="/account" className="linking">
+              <Link
+                to="/account"
+                className="linking"
+                style={{ textDecoration: "none" }}
+              >
                 <span className="linking rightLinks">Edit Account</span>
               </Link>
               <NavDropdown.Divider />
-              <Link to="/account" className="linking">
+              <Link
+                to="/account"
+                className="linking"
+                style={{ textDecoration: "none" }}
+              >
                 <span className="linking rightLinks">Log Out</span>
               </Link>
             </NavDropdown>

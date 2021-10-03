@@ -94,11 +94,12 @@ export default function App() {
               },
             }}
             className="linking"
+            style={{ textDecoration: "none" }}
           >
             {selectedSeats.concat(
               selectedShowTime?.seats.split(",").map(Number).length
             ) != 64 ? (
-              <button className="nextBtn">Pay Now</button>
+              <div className="nextBtn">Pay Now</div>
             ) : (
               <div style={{ marginBottom: "50px" }}></div>
             )}

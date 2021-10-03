@@ -34,7 +34,10 @@ const Blogs = () => {
                 <div class="emiz_blog">
                   <h1>{blog.original_title}</h1>
                   <p>{blog.overview}</p>
-                  <Link to={`/blog/${blog.id}}`}>
+                  <Link
+                    to={`/blog/${blog.id}}`}
+                    style={{ textDecoration: "none" }}
+                  >
                     <div class="readmore">Read More</div>
                   </Link>
                 </div>

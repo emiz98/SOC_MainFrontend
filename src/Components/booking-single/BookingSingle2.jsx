@@ -89,7 +89,10 @@ const BookingSingle = () => {
               <span className="likes">{movie2?.vote_count} Votes</span>
               <div className="ticketButtonDiv">
                 {showTimes.length != 0 ? (
-                  <Link to={`/seats/${movie?.id}}`}>
+                  <Link
+                    to={`/seats/${movie?.id}}`}
+                    style={{ textDecoration: "none" }}
+                  >
                     <span className="ticketButton">Book Tickets</span>
                   </Link>
                 ) : (
