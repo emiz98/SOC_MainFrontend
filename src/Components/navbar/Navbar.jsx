@@ -29,7 +29,8 @@ const Navbar = () => {
         <Navbars.Brand>
           <Link to="/" className="navbarBrand">
             <img
-              src="//upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/170px-Netflix_2015_logo.svg.png"
+              // src="//upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/170px-Netflix_2015_logo.svg.png"
+              src="/logo.png"
               alt=""
             />
           </Link>

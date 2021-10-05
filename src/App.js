@@ -1,4 +1,3 @@
-import "./App.scss";
 import Bhome from "./Pages/home/Bhome";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Components/navbar/Navbar";
@@ -13,6 +12,7 @@ import FoodCourt from "./Pages/FoodCourt/FoodCourt";
 import Payment from "./Pages/Payment/Payment";
 import Blogs from "./Pages/Blogs/Blogs";
 import Blog from "./Pages/Blogs/Blog";
+import "./App.scss";
 
 function App() {
   return (
