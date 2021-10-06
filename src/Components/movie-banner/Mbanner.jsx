@@ -47,7 +47,7 @@ const Mbanner = () => {
             {banners.map((banner) => (
               <img
                 key={banner.id}
-                src={`${requests.fetchAssetPath}banners/${banner.banner_image}`}
+                src={`${requests.fetchAssetPath}/banners/${banner.banner_image}`}
                 alt=""
               />
             ))}
