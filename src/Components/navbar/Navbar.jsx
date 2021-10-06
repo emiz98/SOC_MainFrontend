@@ -47,7 +47,7 @@ const Navbar = () => {
               className="linking"
               style={{ textDecoration: "none" }}
             >
-              <span className="linking">Cinemas</span>
+              <span className="linking">Theaters</span>
             </Link>
 
             <Link

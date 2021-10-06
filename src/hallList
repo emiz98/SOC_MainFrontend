@@ -1,10 +1,4 @@
-import "./listhalls.scss";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
-
-const ListHalls = () => {
-  const [theaters, setTheaters] = useState([
+const theaters[
     {
       name: "Savoy 3D",
       location: "Wallawatte",
@@ -141,52 +135,4 @@ const ListHalls = () => {
       email: "osakalite@movieworks.lk",
       image: "14.png",
     },
-  ]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  return (
-    <div>
-      <section style={{ margin: "37px" }}>
-        <div class="container">
-          <h1 class="theaterHeading">Theaters</h1>
-        </div>
-
-        <div className="container">
-          <div className="row">
-            {theaters.map((theater) => (
-              <div className="col-md-3 theaterCard">
-                <img src={`/halls/${theater.image}`} />
-                <h1>{theater.name}</h1>
-                <p>{theater.location}</p>
-                <Link
-                  to={{
-                    pathname: "/halldetails",
-                    state: {
-                      name: theater.name,
-                      location: theater.location,
-                      about: theater.about,
-                      address: theater.address,
-                      phone: theater.phone,
-                      email: theater.email,
-                    },
-                  }}
-                  className="linking"
-                  style={{ textDecoration: "none" }}
-                >
-                  <button className="btn btn-primary" type="button">
-                    More Info
-                  </button>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-export default ListHalls;
+  ];

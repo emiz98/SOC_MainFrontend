@@ -1,7 +1,9 @@
 import "./listhalls.scss";
+import { useLocation } from "react-router";
 import { useEffect } from "react";
 
 const HallDetail = () => {
+  const location = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -13,8 +15,8 @@ const HallDetail = () => {
           <img className="hallBanner" src="theatres_banner.jpg" />
         </div>
         <div className="hallTitleAbsolute">
-          <div className="hallTitleMain">Savoy 3D Dolby ATMOS</div>
-          <div className="hallTitleSub">Wellawatte</div>
+          <div className="hallTitleMain">{location.state?.name}</div>
+          <div className="hallTitleSub">{location.state?.location}</div>
         </div>
       </div>
       <div className="container hallAbout">
@@ -24,14 +26,7 @@ const HallDetail = () => {
           </div>
           <div className="col-md-7 col-xl-8 col-xxl-8">
             <p>
-              Savoy Cinema is owned and managed by EAP Films &amp; Theaters
-              Private Limited. It has long been a one of the top end movie
-              entertainment centers in and around Colombo city. Savoy Cinema is
-              well equipped with the latest movie technology can accommodate 150
-              GOLD CLASS, 497ODC and 8 Box seats that can seat two per Box.
-              Savoy Cinema currently screen movies in four major languages,
-              namely English and Hindi Movies and the cinema currently screens
-              four movies per day.
+              {location.state?.about}
               <br />
             </p>
           </div>
@@ -44,17 +39,11 @@ const HallDetail = () => {
           </div>
           <div className="col-md-7 col-xl-8 col-xxl-8">
             <p>
-              <strong>
-                No 12, Savoy Building, Wellwatte, Colombo 6, Wellawatte
-              </strong>
+              <strong>{location.state?.address}</strong>
               <br />
             </p>
             <p>
-              Phone: +94117444466
-              <br />
-            </p>
-            <p>
-              Fax: +94117444466
+              Phone: {location.state?.phone}
               <br />
             </p>
             <p>
