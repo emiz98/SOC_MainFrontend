@@ -12,6 +12,7 @@ const Blog = () => {
   const [blog, setBlog] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     scrollLock();
     async function fetchBlogDetails() {
       const request = await axios

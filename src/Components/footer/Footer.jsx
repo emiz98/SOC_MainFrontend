@@ -15,8 +15,8 @@ const Footer = () => {
             <a href="#" id="button">
               Back to Top
             </a>
-            <a href="#">Terms of Use</a>
-            <a href="#">Privacy</a>
+            <a href="#">API Documentation</a>
+            <a href="#">Collaborators</a>
           </nav>
         </div>
       </footer>

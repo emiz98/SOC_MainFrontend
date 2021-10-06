@@ -69,7 +69,7 @@ const HallDetail = () => {
           <div className="col-md-12 col-xl-4 col-xxl-4">
             <h1>Facilities</h1>
           </div>
-          <div className="col-md-4 col-lg-4 col-xl-2">
+          <div className="col-4 col-md-4 col-lg-4 col-xl-2">
             <img src="ico1.png" />
             <p className="facilityHeading">Parking</p>
             <p>
@@ -77,7 +77,7 @@ const HallDetail = () => {
               <br />
             </p>
           </div>
-          <div className="col-md-4 col-lg-4 col-xl-3 col-xxl-3">
+          <div className="col-4 col-md-4 col-lg-4 col-xl-3 col-xxl-3">
             <img src="ico2.png" />
             <p className="facilityHeading">Snacks and Drinks</p>
             <p>
@@ -86,14 +86,9 @@ const HallDetail = () => {
               <br />
             </p>
           </div>
-          <div className="col-md-4 col-lg-4 col-xl-3 col-xxl-3">
+          <div className="col-4 col-md-4 col-lg-4 col-xl-3 col-xxl-3">
             <img src="ico3.png" />
-            <p className="facilityHeading">
-              <br />
-              <strong>Restaurant</strong>
-              <br />
-              <br />
-            </p>
+            <p className="facilityHeading">Restaurant</p>
             <p>
               Enjoy a sit-down meal at the theater with family and friends
               before or after a movie.
