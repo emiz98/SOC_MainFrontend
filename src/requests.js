@@ -3,7 +3,7 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const TMDB_ASSETS = "https://image.tmdb.org/t/p/original/";
 
 const CINEMA_API = "https://cinemax-app.herokuapp.com/api/v1";
-const CINEMA_API_ASSETS = "https://cinemax-app.herokuapp.com/assets/";
+const CINEMA_API_ASSETS = "https://cinemax-app.herokuapp.com/assets";
 
 const requests = {
   fetchTMDBAssetsPath: `${TMDB_ASSETS}`,
