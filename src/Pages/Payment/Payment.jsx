@@ -5,6 +5,9 @@ import { useLocation } from "react-router";
 import Stripe from "react-stripe-checkout";
 import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import requests from "../../requests";
 
@@ -71,6 +74,42 @@ const Payment = () => {
     }
   }, []);
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1500,
+    autoplaySpeed: 3000,
+  };
+  const notifications = [
+    {
+      id: 1,
+      image: "./banners/1.png",
+    },
+    {
+      id: 2,
+      image: "./banners/2.png",
+    },
+    {
+      id: 3,
+      image: "./banners/3.png",
+    },
+    {
+      id: 4,
+      image: "./banners/4.png",
+    },
+    {
+      id: 5,
+      image: "./banners/5.png",
+    },
+    {
+      id: 6,
+      image: "./banners/6.png",
+    },
+  ];
+
   return (
     <div>
       <div className="st_dtts_wrapper float_left">
@@ -111,11 +150,16 @@ const Payment = () => {
                   <div className="col-md-12">
                     <div className="st_cherity_section float_left">
                       <div className="st_cherity_img float_left">
-                        <img
-                          src="banner1.jpg"
-                          alt="img"
-                          style={{ width: "100%" }}
-                        />
+                        <Slider {...settings}>
+                          {notifications.map((notification) => (
+                            <img
+                              key={notification.id}
+                              src={notification.image}
+                              alt=""
+                              style={{ width: "100%" }}
+                            />
+                          ))}
+                        </Slider>
                       </div>
                     </div>
                   </div>
