@@ -37,8 +37,6 @@ export default function App() {
     fetchShowTimes();
   }, []);
 
-  console.log(showTimes);
-
   const ShowTimeChange = (e) => {
     setSelectedSeats([]);
     const obj = showTimes.find((t) => t.id == e.target.value);

@@ -26,8 +26,6 @@ const FoodCourt = () => {
     fetchData();
   }, []);
 
-  console.log(foods);
-
   return (
     <div>
       {Loading ? (
@@ -45,8 +43,8 @@ const FoodCourt = () => {
 
           <div className="container" style={{ marginTop: "60px" }}>
             <div className="row" style={{ marginBottom: "30px" }}>
-              {foods.map((food) => (
-                <div className="col-md-3 foodItem">
+              {foods.map((food, i) => (
+                <div className="col-md-3 foodItem" key={i}>
                   <img
                     src={`${requests.fetchAssetPath}/foods/${food.food_image}`}
                   />

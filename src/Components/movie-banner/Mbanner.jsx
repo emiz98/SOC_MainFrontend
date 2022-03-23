@@ -27,8 +27,6 @@ const Mbanner = () => {
     fetchData();
   }, []);
 
-  console.log(banners);
-
   const settings = {
     dots: false,
     infinite: true,

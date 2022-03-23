@@ -31,7 +31,7 @@ const Payment = () => {
         id: "",
       },
     },
-    email: "menadithrox1@gmail.com",
+    email: "testmail@gmail.com",
     seats: location.state.seats.toString(),
   });
 
@@ -42,8 +42,6 @@ const Payment = () => {
   };
 
   const date = location.state.movie.showTime.dateSlot.date.split("-");
-
-  console.log(date);
 
   async function handleToken(token) {
     console.log(token);

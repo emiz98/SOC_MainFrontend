@@ -51,9 +51,6 @@ const BookingSingle = () => {
       });
   };
 
-  console.log(movie);
-  console.log(movieLink);
-
   return (
     <div>
       {Loading ? (
@@ -97,8 +94,8 @@ const BookingSingle = () => {
 
             <div className="description">
               <div className="column1">
-                {movie.genres?.map((genre) => (
-                  <span id={genre?.id} className="tag">
+                {movie.genres?.map((genre, i) => (
+                  <span id={genre?.id} className="tag" key={i}>
                     {genre?.name}
                   </span>
                 ))}
@@ -110,8 +107,11 @@ const BookingSingle = () => {
             <div className="runtime">{movie?.runtime} Min.</div>
             <div className="languages">
               Languages:
-              {movie.spoken_languages?.map((lang) => (
-                <span id={lang?.id}> {lang?.name}, </span>
+              {movie.spoken_languages?.map((lang, i) => (
+                <span key={i} id={lang?.id}>
+                  {" "}
+                  {lang?.name},{" "}
+                </span>
               ))}
             </div>
             <div className="qualites">2D , 3D , IMAX 2D , MX4D , 4DX</div>

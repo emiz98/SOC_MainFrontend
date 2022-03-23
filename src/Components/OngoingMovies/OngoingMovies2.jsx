@@ -65,8 +65,6 @@ const OngoingMovies2 = ({ title }) => {
     fetchData();
   }, []);
 
-  console.log(movies);
-
   return (
     <div>
       {Loading ? (

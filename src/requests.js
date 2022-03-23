@@ -30,6 +30,7 @@ const requests = {
   fetchCinemaOngoingMovies: `${CINEMA_API}/movies`,
   fetchCinemaMovie: `${CINEMA_API}/movie/`,
   fetchCinemaMovieShowTime: `${CINEMA_API}/showTimes/`,
+  fetchUserTickets: `${CINEMA_API}/tickets`,
   dispatchTicket: `${CINEMA_API}/tickets`,
   dispatchPayment: `https://cinemax-app.herokuapp.com/api/payment/charge`,
 };

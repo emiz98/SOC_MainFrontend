@@ -150,14 +150,14 @@ const ListHalls = () => {
   return (
     <div>
       <section style={{ margin: "37px" }}>
-        <div class="container">
-          <h1 class="theaterHeading">Theaters</h1>
+        <div className="container">
+          <h1 className="theaterHeading">Theaters</h1>
         </div>
 
         <div className="container">
           <div className="row">
-            {theaters.map((theater) => (
-              <div className="col-md-3 theaterCard">
+            {theaters.map((theater, i) => (
+              <div className="col-md-3 theaterCard" key={i}>
                 <img src={`/halls/${theater.image}`} />
                 <h1>{theater.name}</h1>
                 <p>{theater.location}</p>

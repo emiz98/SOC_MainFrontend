@@ -30,8 +30,6 @@ const Blog = () => {
     fetchBlogDetails();
   }, []);
 
-  console.log(blog);
-
   return (
     <div>
       {Loading ? (

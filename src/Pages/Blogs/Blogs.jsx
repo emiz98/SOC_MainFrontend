@@ -28,30 +28,29 @@ const Blogs = () => {
     fetchBlogs();
   }, []);
 
-  console.log(blogs);
-
   return (
     <div>
       {Loading ? (
-        blogs.map((blog) => (
+        blogs.map((blog, i) => (
           <div
-            class="movie_info emiz"
+            key={i}
+            className="movie_info emiz"
             style={{
               backgroundImage: `url("${requests.fetchTMDBAssetsPath}${blog.backdrop_path}")`,
             }}
           >
             <div className="blogs_fadebottom"></div>
-            <div class="blog_info_container">
-              <div class="row">
-                <div class="col-lg-offset-7 col-lg-5 col-sm-offset-5 col-sm-7">
-                  <div class="emiz_blog">
+            <div className="blog_info_container">
+              <div className="row">
+                <div className="col-lg-offset-7 col-lg-5 col-sm-offset-5 col-sm-7">
+                  <div className="emiz_blog">
                     <h1>{blog.original_title}</h1>
                     <p>{blog.overview}</p>
                     <Link
                       to={`/blog/${blog.id}}`}
                       style={{ textDecoration: "none" }}
                     >
-                      <div class="readmore">Read More</div>
+                      <div className="readmore">Read More</div>
                     </Link>
                   </div>
                 </div>

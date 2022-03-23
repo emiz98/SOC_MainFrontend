@@ -56,8 +56,6 @@ const BookingSingle = () => {
         setshowTimes(res2.data);
         scrollOn();
       });
-
-    console.log(showTimes.length);
   };
 
   // console.log(movie);
@@ -121,8 +119,8 @@ const BookingSingle = () => {
 
             <div className="description">
               <div className="column1">
-                {movie2.genres?.map((genre) => (
-                  <span id={genre?.id} className="tag">
+                {movie2.genres?.map((genre, i) => (
+                  <span key={i} id={genre?.id} className="tag">
                     {genre?.name}
                   </span>
                 ))}
@@ -134,8 +132,11 @@ const BookingSingle = () => {
             <div className="runtime">{movie2?.runtime} Min.</div>
             <div className="languages">
               Languages:
-              {movie2.spoken_languages?.map((lang) => (
-                <span id={lang?.id}> {lang?.name}, </span>
+              {movie2.spoken_languages?.map((lang, i) => (
+                <span key={i} id={lang?.id}>
+                  {" "}
+                  {lang?.name},{" "}
+                </span>
               ))}
             </div>
             <div className="qualites">2D , 3D , IMAX 2D , MX4D , 4DX</div>

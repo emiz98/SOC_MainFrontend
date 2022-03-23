@@ -5,7 +5,6 @@ import BookingSingle from "./Components/booking-single/BookingSingle";
 import BookingSingle2 from "./Components/booking-single/BookingSingle2";
 import ListHalls from "./Pages/ListHalls/ListHalls";
 import Footer from "./Components/footer/Footer";
-import Account from "./Pages/AccountDetails/Account";
 import Seats from "./Pages/Seats/Seats";
 import HallDetail from "./Pages/ListHalls/HallDetail";
 import FoodCourt from "./Pages/FoodCourt/FoodCourt";
@@ -13,6 +12,7 @@ import Payment from "./Pages/Payment/Payment";
 import Blogs from "./Pages/Blogs/Blogs";
 import Blog from "./Pages/Blogs/Blog";
 import "./App.scss";
+import Tickets from "./Pages/Tickets/Tickets";
 
 function App() {
   return (
@@ -53,8 +53,8 @@ function App() {
           <Route path="/food">
             <FoodCourt />
           </Route>
-          <Route path="/account">
-            <Account />
+          <Route path="/tickets">
+            <Tickets />
           </Route>
         </Switch>
         <Footer />
