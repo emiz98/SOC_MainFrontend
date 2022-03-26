@@ -53,10 +53,10 @@ const Payment = () => {
         },
       })
       .then((res) => {
-        history.push("/");
+        history.push("/tickets");
       })
       .catch((error) => {
-        alert(error);
+        history.push("/tickets");
       });
 
     handleSubmit();
