@@ -11,7 +11,7 @@ const Tickets = () => {
     async function fetchTickets() {
       scrollLock();
       const request = await axios
-        .get(`${requests.fetchUserTickets}` + "/menadithrox1@gmail.com")
+        .get(`${requests.fetchUserTickets}` + "/testmail@gmail.com")
         .then((res) => {
           setLoading(true);
           setTickets(res.data);
